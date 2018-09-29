@@ -63,7 +63,7 @@ class FilterNavigator: UIView
     let tableView: UITableView =
     {
         let tableView = UITableView(frame: CGRect.zero,
-            style: UITableViewStyle.plain)
+            style: UITableView.Style.plain)
         
         tableView.register(UITableViewHeaderFooterView.self,
             forHeaderFooterViewReuseIdentifier: "HeaderRenderer")
@@ -96,7 +96,7 @@ class FilterNavigator: UIView
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self,
             action: #selector(FilterNavigator.segmentedControlChange),
-            for: UIControlEvents.valueChanged)
+            for: UIControl.Event.valueChanged)
         
         addSubview(tableView)
         addSubview(segmentedControl)

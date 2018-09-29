@@ -914,11 +914,11 @@ class DifferenceOfGaussians: CIFilter
                                      count: weightsArray.count).normalize()
         
         let horizontalBluredImage = CIFilter(name: "CIConvolution9Horizontal",
-                                             withInputParameters: [kCIInputWeightsKey: weightsVector,
+                                             parameters: [kCIInputWeightsKey: weightsVector,
                                                                    kCIInputImageKey: image])!.outputImage!
         
         let verticalBlurredImage = CIFilter(name: "CIConvolution9Vertical",
-                                            withInputParameters: [kCIInputWeightsKey: weightsVector,
+                                            parameters: [kCIInputWeightsKey: weightsVector,
                                                                   kCIInputImageKey: horizontalBluredImage])!.outputImage!
         
         return verticalBlurredImage
@@ -1014,7 +1014,7 @@ class StarBurstFilter: CIFilter
         let thresholdImage = thresholdFilter.outputImage!
         
         let starBurstAccumulator = CIImageAccumulator(extent: thresholdImage.extent,
-                                                      format: kCIFormatARGB8)
+                                                      format: CIFormat.ARGB8)
         
         for i in 0 ..< inputBeamCount
         {
@@ -1439,7 +1439,7 @@ class VignetteNoirFilter: CIFilter
             .applyingFilter("CIPhotoEffectNoir", parameters: [:])
             .applyingFilter("CIColorControls", parameters: [ kCIInputBrightnessKey: inputEdgeBrightness])
         
-        let blendWithMaskFilter = CIFilter(name: "CIBlendWithMask", withInputParameters: [kCIInputImageKey: inputImage,
+        let blendWithMaskFilter = CIFilter(name: "CIBlendWithMask", parameters: [kCIInputImageKey: inputImage,
                                                                                           kCIInputBackgroundImageKey: noir,
                                                                                           kCIInputMaskImageKey: mask])
         
